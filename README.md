@@ -43,4 +43,6 @@ This challenge includes the solution for user api challenge.
 - Run mvn clean install
 - Start the application
 - Send any request through POSTMAN
+    - You need to add a bearer token (just write anything)
+- Swagger URL http://localhost:{port}/swagger-ui.html
 

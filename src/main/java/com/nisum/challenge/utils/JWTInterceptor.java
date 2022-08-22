@@ -18,7 +18,6 @@ public class JWTInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         Optional<String> auth = Optional.ofNullable(request.getHeader("Authorization"));
-
         if (auth.isPresent()) {
             try {
                 String token = auth.get().split(" ")[1];
@@ -30,7 +29,7 @@ public class JWTInterceptor implements HandlerInterceptor {
                 log.debug(e3.getMessage());
                 throw new InvalidJWTException();
             }
-        } else {
+        } else if (request.getRequestURI().equals("/users")) {
             throw new InvalidJWTException();
         }
         return true;
